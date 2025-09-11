@@ -5,7 +5,5 @@
   template:
     src: antivirus.conf.j2
     dest: "{{ mailcow__install_path }}/data/conf/rspamd/local.d/antivirus.conf"
-    owner: root
-    group: root
     mode: "0644"
   notify: Restart mailcow rspamd

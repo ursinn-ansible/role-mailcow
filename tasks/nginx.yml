@@ -1,7 +1,0 @@
----
-- name: Delete redirect.conf due to implementation of HTTP_REDIRECT variable
-  become: yes
-  file:
-    path: "{{ mailcow__install_path }}/data/conf/nginx/redirect.conf"
-    state: absent
-  when: mailcow__config_http_redirect

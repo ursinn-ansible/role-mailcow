@@ -3,14 +3,19 @@
 - name: Install required apt packages
   become: yes
   apt:
-    name: git
+    name: git, jq
     state: present
+
 
 - name: Check if mailcow installation directory exists
   become: yes
   stat:
     path: "{{ mailcow__install_path }}"
   register: mailcow_installed
+
+- name: Set fact if this is a fresh install
+  set_fact:
+    ansible_fresh_install: "{{ not mailcow_installed.stat.exists }}"
 
 - name: Clone mailcow git repo
   become: yes
@@ -43,9 +48,6 @@
 - name: Configure Rspamd
   import_tasks: rspamd.yml
 
-- name: Migrate NGINX Redirect
-  import_tasks: nginx.yml
-
 - name: Copy vars.local.inc.php
   become: yes
   template:
@@ -64,10 +66,12 @@
     {{ mailcow__compose_command }} --project-name {{ mailcow__docker_compose_project_name }} up -d
   args:
     chdir: "{{ mailcow__install_path }}"
-  when: not mailcow_running.exists
+  when:
+    - not mailcow_running.exists
 
 - name: Update mailcow
   include_tasks: update.yml
   when:
     - mailcow_running.exists
     - mailcow__install_updates
+    - not (ansible_fresh_install | default(false))
