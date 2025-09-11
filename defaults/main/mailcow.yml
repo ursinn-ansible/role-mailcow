@@ -110,3 +110,6 @@ mailcow__config_skip_fts: n
 
 # Redirect HTTP connections to HTTPS - y/n
 mailcow__config_http_redirect: n
+
+# Enable IPv6 support - true/false
+mailcow__config_enable_ipv6: true

@@ -86,3 +86,5 @@
       value: "{{ mailcow__config_skip_fts }}"
     - variable: HTTP_REDIRECT
       value: "{{ mailcow__config_http_redirect }}"
+    - variable: ENABLE_IPV6
+      value: "{{ mailcow__config_enable_ipv6 }}"

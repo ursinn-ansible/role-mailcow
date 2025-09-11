@@ -56,7 +56,10 @@ This role will use by default the `inventory_hostname` as mailcow hostname, this
 |      `mailcow__rspamd_clamd_servers`      |                 configures the clamd server used by rspamd                  |                    `clamd:3310`                     |                                                               |
 |     `mailcow__rspamd_clamd_patterns`      |    configures custom clamd rspamd patterns inside rspamd antivirus.conf     |                                                     |             needs to be a list  of name and regex             |
 |        `mailcow__compose_command`         |               configures the command that is used for compose               |                  `docker compose`                   | set to `docker-compose` for the standalone version of compose |
+|       `mailcow__config_enable_ipv6`       |                      sets ENABLE_IPV6 in mailcow.conf                       |                       `true`                        |   Enables IPv6 support in mailcow, can be `true` or `false`   |
 
+> [!WARNING]
+> Please take close attention to the variable `mailcow__config_enable_ipv6` as this value is a boolean instead of a string.
 
 ## Usage
 
