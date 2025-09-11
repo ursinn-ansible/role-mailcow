@@ -10,17 +10,6 @@
   loop:
     - WATCHDOG_NOTIFY_EMAIL
     - WATCHDOG_SUBJECT
-    - ACME_CONTACT
-
-- name: Warn if mailcow__redirect_http_to_https is used
-  debug:
-    msg: "WARNING: The variable 'mailcow__redirect_http_to_https' is depcrecated and will be removed soon. Please use 'mailcow__config_http_redirect' instead."
-  when: mailcow__redirect_http_to_https is defined
-
-- name: "Set deprecated variable mailcow__redirect_http_to_https to mailcow__config_http_redirect"
-  set_fact: 
-    mailcow__config_http_redirect: "{{ 'y' if mailcow__redirect_http_to_https | default(false) else 'n' }}"
-  when: mailcow__redirect_http_to_https is defined
 
 - name: "Configure mailcow.conf"
   become: yes
@@ -76,8 +65,6 @@
       value: "{{ mailcow__config_sogo_expire_session }}"
     - variable: COMPOSE_PROJECT_NAME
       value: "{{ mailcow__docker_compose_project_name }}"
-    - variable: ACME_CONTACT
-      value: "{{ mailcow__config_acme_contact }}"
     - variable: FTS_HEAP
       value: "{{ mailcow__config_fts_heap }}"
     - variable: FTS_PROCS
