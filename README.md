@@ -53,14 +53,10 @@ This role will use by default the `inventory_hostname` as mailcow hostname, this
 |        `mailcow__config_log_lines`        |                       sets LOG_LINES in mailcow.conf                        |                       `9999`                        |                                                               |
 |   `mailcow__config_sogo_expire_session`   |                  sets SOGO_EXPIRE_SESSION in mailcow.conf                   |                        `480`                        |                                                               |
 |        `mailcow__install_updates`         | if `yes` the mailcow ansible role will also update an existing installation |                        `yes`                        |                                                               |
-|      `mailcow__config_acme_contact`       |                      sets ACME_CONTACT in mailcow.conf                      |                                                     |                                                               |
 |      `mailcow__rspamd_clamd_servers`      |                 configures the clamd server used by rspamd                  |                    `clamd:3310`                     |                                                               |
 |     `mailcow__rspamd_clamd_patterns`      |    configures custom clamd rspamd patterns inside rspamd antivirus.conf     |                                                     |             needs to be a list  of name and regex             |
 |        `mailcow__compose_command`         |               configures the command that is used for compose               |                  `docker compose`                   | set to `docker-compose` for the standalone version of compose |
 
-
-> [!CAUTION]  
-> The Variable `mailcow__redirect_http_to_https` is **deprecated** but still accepted and will be removed on a later date. Please use the replacement: `mailcow__config_http_redirect` instead.
 
 ## Usage
 
