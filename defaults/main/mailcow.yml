@@ -52,7 +52,7 @@ mailcow__config_skip_lets_encrypt: n
 # Create seperate certificates for all domains - y/n
 # this will allow adding more than 100 domains, but some email clients will not be able to connect with alternative hostnames
 # see https://wiki.dovecot.org/SSL/SNIClientSupport
-mailcow__config_enable_ssl_sni: n
+mailcow__config_enable_ssl_sni: y
 
 # Skip IPv4 check in ACME container - y/n
 mailcow__config_skip_ip_check: n
